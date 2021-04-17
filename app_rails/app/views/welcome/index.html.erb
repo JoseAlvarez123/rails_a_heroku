@@ -1,0 +1,12 @@
+<h1>Hola</h1>
+<h2>
+  <%= form_with url: "/", method: :get, local: true do |form| %>
+    <%= form.label :name, "Por favor ingresa tu nombre:" %>
+    <%= form.text_field :name %>
+    <%= form.submit "Enviar" %>
+  <% end %>
+</h2>
+<% if params[:name]%>
+  <h2><%= "Hola #{params[:name]}"%></h2>
+  <iframe src="https://giphy.com/embed/wzJ67MJMk6UMM" width="480" height="360" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+<% end %>
