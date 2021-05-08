@@ -1,0 +1,24 @@
+<h2> Add Review </h2>
+<%= form_with(model: [ @user, @user.recieved_reviews.build ], local: true) do |form| %>
+    <p>
+        Puntuacion:
+        <br>
+        <%= form.text_field :puntaje%>
+    </p>
+    <p>
+        Titulo:
+        <br>
+        <%= form.text_field :titulo%>
+    </p>
+    <p>
+        Contenido:
+        <br>
+        <%= form.text_area :cuerpo%>
+    </p>
+        
+    <p>
+        <%= form.submit %>
+    </p>
+<% end %>
+
+<%= link_to "Atrás", :back %>

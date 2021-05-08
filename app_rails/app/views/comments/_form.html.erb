@@ -1,0 +1,12 @@
+<%= form_with model: @comment, local: true do |form| %>
+    <p>
+        Comentario:
+        <br>
+        <%= form.text_area :content %>
+    </p>
+
+    <p>
+        <%= form.submit %>
+    </p>
+<% end %>
+<%= link_to "Atrás", comments_path %>

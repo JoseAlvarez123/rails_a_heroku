@@ -1,0 +1,22 @@
+<h2>Review</h2>
+
+<div>
+  <h3>Puntaje</h3>
+  <p><%= "5/#{@review.puntaje}" %></p>
+</div>
+
+<div>
+  <h3>Titulo</h3>
+  <p><%= @review.titulo %></p>
+</div>
+
+<div>
+  <h3>Cuerpo</h3>
+  <p><%= @review.cuerpo %></p>
+</div>
+
+<div>
+  <h3>Realizada por</h3>
+  <p><%= link_to @review.user.full_name, user_path(@user) %></p>
+</div>
+

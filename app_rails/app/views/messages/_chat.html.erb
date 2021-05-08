@@ -1,0 +1,45 @@
+<script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
+<% messages = current_user.chat(reciever.id)%>
+<% if messages.length > 0%>
+  <% messages.each do |message|%>
+    <% if message.sender_id == current_user.id%>
+      <div style="width: 250px; text-align: right;">
+        <p> <%= message.content %> <%= link_to "Eliminar", message_path(message), method: :delete%></p>  
+        <a href="javascript:void(0)" onclick=onClick(<%= message.id.to_s %>)>Editar</a>
+        <div id=<%= message.id.to_s %> class="hidden" style="display: none;">
+          <%= form_with model: message, local: true do |form| %>
+  
+            <p>
+              <%= form.text_field :content %>
+            </p>
+          
+            <p>
+              <%= form.submit %>
+            </p>
+          
+          <% end %>
+        </div>
+    <% else %>
+      <div style="width: 250px;">
+        <p> <%= message.content %> </p>
+    <% end %>
+    </div>
+  <% end %>
+<% end %>
+<%= form_with model: [ reciever, reciever.recieved_messages.build], local: true do |form| %>
+ 
+  <p>
+    <%= form.text_field :content %>
+  </p>
+ 
+  <p>
+    <%= form.submit %>
+  </p>
+ 
+<% end %>
+
+<script>
+  function onClick(message_id) {
+    $("#" + message_id).toggle();
+  }
+</script>

@@ -1,0 +1,15 @@
+<h1> Comentarios </h1>
+<div>
+    <% @comments.each do |comment| %>
+        <h3><%= "#{comment.user.full_name} (#{comment.created_at}): " %></h3>
+        <p><%= comment.content %></p>
+        <% if comment.user == current_user%>
+          <%= link_to 'Editar', edit_comment_path(comment)%>
+          <%= link_to 'Eliminar', comment_path(comment), method: :delete%>
+        <% end %>
+    <% end %>
+</div>
+<div>
+  <%= link_to 'Volver', user_session_path %> |
+  <%= link_to 'Haz un comentario', new_comment_path %>
+</div>

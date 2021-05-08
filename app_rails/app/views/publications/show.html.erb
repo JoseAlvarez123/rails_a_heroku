@@ -1,0 +1,33 @@
+<h2>Publication: <%= @publication.title %></h2>
+
+<div>
+  <h3>Animal</h3>
+  <p><%= @publication.animal_type %></p>
+</div>
+
+<div>
+  <h3>Tipo</h3>
+  <p><%= @publication.category %></p>
+</div>
+
+<% if @publication.category == 'sale' %>
+  <div>
+    <h3>Precio</h3>
+    <p><%= @publication.price %></p>
+  </div>
+<% end %>
+
+<div>
+  <h3>Realizada por</h3>
+  <p><%= link_to @publication.user.full_name, user_path(@publication.user) %></p>
+</div>
+
+
+<% if requested?(@publication) %>
+    <button class="btn btn-liked"><i class="fas fa-thumbs-up"></i></button>
+  <% else %>
+    <% if @publication.user.id != current_user.id %>
+      <%= link_to 'Enviar solicitud', publication_user_requests_path(@publication.id), method: :create%>
+    <% end %>
+<% end %>
+

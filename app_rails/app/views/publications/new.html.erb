@@ -1,0 +1,5 @@
+<h2>Create new Publication</h2>
+
+<%= render partial: "form", locals: {model: [ current_user, current_user.publications.build ]} %>
+ 
+<%= link_to 'Inicio', publications_path %>

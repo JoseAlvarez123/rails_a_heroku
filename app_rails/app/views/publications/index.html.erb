@@ -1,0 +1,10 @@
+<h1> All publications </h1>
+<div>
+  <% @publications.each do |publication| %>
+    <div style="border: solid 1px; width: 200px; padding: 10px; allign-text: center; margin: 5px;">
+      <h3><%= link_to publication.title, publication_path(publication) %></h3>
+      <p><%= publication.animal_type %></p>
+      <p><%= publication.category %></p>
+    </div>
+  <% end %>
+</div>

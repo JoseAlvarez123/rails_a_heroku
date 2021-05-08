@@ -1,0 +1,56 @@
+<h2>User: <%= @user.full_name %></h2>
+
+<div>
+  <h3>Nombre</h3>
+  <p><%= @user.name %></p>
+</div>
+
+<div>
+  <h3>Apellido</h3>
+  <p><%= @user.last_name %></p>
+</div>
+
+<div>
+  <h3>Teléfono</h3>
+  <p><%= @user.phone %></p>
+</div>
+
+<div>
+  <h3>Email</h3>
+  <p><%= @user.email %></p>
+</div>
+
+<% if @user.publications.length > 0 and current_user == @user%>
+  <h2>Publicaciones</h2>
+  <% @user.publications.each do |publication| %>
+    <div style="border: solid 1px; width: 200px; padding: 2px; allign-text: center; margin: 5px;">
+      <h3><%= link_to publication.title, publication_path(publication) %></h3>
+      <% if current_user == @user%>
+        <p><%= link_to 'Editar', edit_publication_path(publication)%> <%= link_to 'Eliminar', publication_path(publication), method: :delete%></p>
+      <% end %>
+    </div>
+  <% end %>
+<% end %>
+
+<div>
+  <% if current_user == @user%>
+    <%= link_to 'Editar información de la cuenta', edit_user_registration_path %> |
+    <%= link_to 'Eliminar cuenta', user_path(@user), method: :delete %>
+  <% end %>
+</div>
+
+<h2>Reseñas</h2>
+<% if @user.recieved_reviews.length > 0%>
+  <% @user.recieved_reviews.each do |review| %>
+    <div style="border: solid 1px; width: 200px; padding: 2px; allign-text: center; margin: 5px;">
+      <h3><%= "(#{review.puntaje}/5): #{review.titulo}" %></h3>
+      <p><%= "#{review.cuerpo}" %></p>
+      <p><%= link_to 'Editar', edit_review_path(review)%>|<%= link_to 'Eliminar', review_path(review), method: :delete%></p>
+      </div>
+  <% end %>
+<% end %>
+<p><%= link_to 'Añadir reseña', new_review_path(user_id: @user.id)%></p>
+
+<div>
+  <%= link_to 'Volver', publications_path %>
+</div>

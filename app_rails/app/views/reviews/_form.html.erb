@@ -1,0 +1,20 @@
+<%= form_with(model: model, local: true) do |form| %>
+  <div class="field">
+    Puntaje<br />
+    <%= form.text_field :puntaje, autofocus: true, autocomplete: "puntaje" %>
+  </div>
+
+  <div class="field">
+    Titulo<br />
+    <%= form.text_field :titulo, autofocus: true, autocomplete: "titulo" %>
+  </div>
+
+  <div class="field">
+    Cuerpo<br />
+    <%= form.text_area :cuerpo, autofocus: true, autocomplete: "cuerpo" %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
